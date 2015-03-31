@@ -1,0 +1,118 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Search Results{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <h1>Search results: {{ result }}</h1>
+</div>
+<div class="container">
+	<!-- Systems -->
+	{% if devices[0] %}
+	<div class="row">
+	<h3>Systems</h3><br>
+	{% for each in devices %}
+		System Serial: <a href="/inv/item/{{each.serial}}">{{each.serial}}</a><br>
+		System Location: {{each.owner}}<br>
+		<br>
+	{% endfor %}
+	<hr>
+	</div>
+		{% if device %}
+		  {% if device.ischeckedout == 0 %}
+		    <div class="row">
+		    <form action="/lend/{{ device.serial }}/out/Engineering">
+		    <button class="btn btn-warning col-md-3">Out to <b>Engineering</b></button>
+		    </form>
+		    <form action="/lend/{{ device.serial }}/out/Sales">
+		    <button class="btn btn-warning col-md-3">Out to <b>Sales</b></button>
+		    </form>
+		    <form action="/lend/{{ device.serial }}/out/FieldOps">
+		    <button class="btn btn-warning col-md-3">Out to <b>Field Ops</b></button>
+		    </form>
+		    </div>
+		    <br>
+		    <br>
+		    <br>
+		  {% endif %}
+		  <!-- Create Event -->
+		    {% if device.ischeckedout == 0%}
+		      <!-- CHECK API -->
+		      {% for event in events %}
+		        <div class="row">
+		          <form action="/event/{{event.id}}/{{device.serial}}/add" method="POST">
+		            <button name="{{event.name}}" class="btn btn-success col-md-3">{{event.name}}</button>
+		          </form>
+		        </div>
+		        <br>
+		      {% endfor %}
+		        <!-- END CHECK -->
+		        <br><br>
+		        <!-- CHECK API -->
+		        <form action="/lend/{{ device.serial }}/event/create" method="GET">
+		        <fieldset>
+		        <div class="row">
+		          <div class="col-md-2">
+		            <label class="control-label" for="createevent">Create Event</label><br>
+		          </div>
+		          <div class="col-md-6">
+		            <button id="createevent" name="createevent" class="btn btn-success col-md-3">Yes</button>
+		          </div>
+		        </div>
+		        </fieldset>
+		        </form>
+		        <!-- END CHECK -->
+		    {% endif %}
+		    {% if device.ischeckedout == 1 %}
+		      <div class="row">
+		      <form action="/lend/{{ device.serial }}/in/Engineering">
+		      <button class="btn btn-warning col-md-3">In from <b>Engineering</b></button>
+		      </form>
+		      <form action="/lend/{{ device.serial }}/in/Sales">
+		      <button class="btn btn-warning col-md-3">In from <b>Sales</b></button>
+		      </form>
+		      <form action="/lend/{{ device.serial }}/in/FieldOps">
+		      <button class="btn btn-warning col-md-3">In from <b>Field Ops</b></button>
+		      </form>
+		      </div>
+		    {% endif %}
+		  {% else %}
+
+		    <form class="form-horizontal" method="POST">
+		    <fieldset>
+
+		    <!-- Form Name -->
+		    <legend>Enter a serial number</legend>
+
+		    <!-- Text input-->
+		    <div class="form-group">
+		      <label class="col-md-4 control-label" for="serial">Serial</label>  
+		      <div class="col-md-4">
+		      <input id="serial" name="serial" type="text" placeholder="" class="form-control input-md">
+		        
+		      </div>
+		    </div>
+
+		    <div class="form-group">
+		      <label class="col-md-4 control-label" for="submit"></label>
+		      <div class="col-md-4">
+		        <button id="submit" name="submit" type="submit" class="btn btn-primary">Create</button>
+		      </div>
+		    </div>
+
+		    </fieldset>
+		    </form>
+		{% endif %}	
+	{% endif %}
+
+	<!-- Subsystems -->
+	{% if not devices[0]%}
+	<div class="row">
+	<h3>No results found!</h3><br>
+	<hr>
+	</div>
+	{% endif %}
+
+
+</div>
+
+{% endblock %}

@@ -54,8 +54,7 @@ def rebuild_index(model):
         
 
 if __name__ == "__main__":
-    model_list = [models.Device,
-                  models.Event]
+    model_list = []#insert models.NAME here for each model
 
     for model in model_list:
         rebuild_index(model)

@@ -1,0 +1,28 @@
+        <!-- QR Codes -->
+        <li {% if request.endpoint == 'qrmake' or request.endpoint == 'qrreports' %} class="active" {% endif %}>
+          <a href="javascript:;">
+          <i class="glyphicon glyphicon-qrcode"></i>
+          <span class="title">QR Codes</span>
+          {% if request.endpoint == 'qrmake' or request.endpoint == 'qrreports' %}<span class="arrow open"></span>{% else %}<span class="arrow"></span>{% endif %}
+          {% if request.endpoint == 'qrmake' or request.endpoint == 'qrreports' %}<span class="selected"></span>{% endif %}
+          </a>
+          <ul class="sub-menu">
+            <li {% if request.endpoint == 'qrmake' %}class="active"{% endif %}>
+            <!-- class="ajaxify" -->
+              <a href="{{ url_for('qrmake') }}">
+              <i class="icon-plus"></i>
+              Make a QR</a>
+            </li>
+            <li {% if request.endpoint == 'qrreports' %}class="active"{% endif %}>
+              <a href="{{ url_for('qrscan') }}">
+              <i class="icon-eyeglasses"></i>
+              Scan In QR</a>
+            </li>
+            <li {% if request.endpoint == 'qrreports' %}class="active"{% endif %}>
+              <a href="{{ url_for('qrreports') }}">
+              <i class="icon-eyeglasses"></i>
+              View QR Reports</a>
+            </li>
+          </ul>
+        </li>
+        <!-- </qr> -->

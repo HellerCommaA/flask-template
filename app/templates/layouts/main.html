@@ -1,190 +1,149 @@
 <!doctype html>
-<head>
-<meta charset="utf-8">
-<title>{% block title %}{% endblock %}</title>
+<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-<!-- meta -->
-<meta name="description" content="">
-<meta name="author" content="">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- /meta -->
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/stickyfooter.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/toastr.min.css">
+        <!-- <link rel="stylesheet" type="text/css" href="/static/css/sortable-theme-bootstrap.css"> -->
 
-<!-- styles -->
-<link type="text/css" rel="stylesheet" href="/static/css/font-awesome-3.2.1.min.css" />
-<link type="text/css" rel="stylesheet" href="/static/css/bootstrap-3.0.0.min.css">
-<link type="text/css" rel="stylesheet" href="/static/css/bootstrap-theme-3.0.0.min.css" />
-<link type="text/css" rel="stylesheet" href="/static/css/layout.main.css" />
-<link type="text/css" rel="stylesheet" href="/static/css/main.css" />
-<link type="text/css" rel="stylesheet" href="/static/css/main.responsive.css" />
-<link type="text/css" rel="stylesheet" href="/static/css/main.quickfix.css" />
-<link type="text/css" rel="stylesheet" href="/static/css/bootstrap-formhelpers.css" />
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-<!-- /styles -->
-
-<!-- favicons -->
-<link rel="shortcut icon" href="/static/ico/favicon.png">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed" href="/static/ico/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="/static/ico/favicon.png">
-<!-- /favicons -->
-
-<!-- scripts -->
-<script src="/static/js/libs/modernizr-2.6.2.min.js"></script>
-
-<!--[if lt IE 9]><script src="/static/js/libs/respond-1.3.0.min.js"></script><![endif]-->
-<!-- /scripts -->
-
-<!-- SHIT I ADDED -->
-
-<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> -->
-<!-- <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script> -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
-
-<script type="text/javascript" src="/static/js/bootstrap-formhelpers.js"></script>
-  <script>
-$(document).ready(function() {
-  $("#datepicker").datepicker();
-  $("#timepicker").timepicker();
-});
-</script>
-
-
-</head>
-<body>
-
-  <!-- Wrap all page content here -->
-  <div id="wrap">
-
-    <!-- Fixed navbar -->
-    <div class="navbar navbar-default navbar-fixed-top">
+        <script src="/static/js/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <a class="navbar-brand" href="#">
+            <img alt="Brand" src="/static/icon.png">
+          </a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand">Bot Log</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li {% if request.endpoint == 'home' %}class="active"{% endif %}><a href="{{url_for('home')}}">Home</a></li>
+        <li><a href="#">Add Item</a></li>
+        <li><a href="#">View Items</a></li>
+        <li><a href="#">Reports</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!-- <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
         </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li {% if request.endpoint == 'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
-            
-            <li {% if request.endpoint == 'addsystem' or request.endpoint == 'viewsystems' %} class="dropdown active" {% else %} class="dropdown" {% endif %}>
-              <a class="dropdown-toggle" data-toggle="dropdown">Systems <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="{{ url_for('addsystem') }}">Add System</a></li>
-                <li><a href="{{ url_for('systems') }}">View Systems</a></li>
-              </ul>
-            </li>
-            <li {% if request.endpoint == 'viewcall' or request.endpoint == 'addcall' %} class="dropdown active" {% else %} class="dropdown" {% endif %}>
-              <a class="dropdown-toggle" data-toggle="dropdown">Service Calls <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="{{ url_for('addcall') }}">Add Service Call</a></li>
-                <li><a href="{{ url_for('viewcall') }}">View Service Call</a></li>
-              </ul>
-            </li>
-            
-          <li {% if request.endpoint == 'weeklyreport' or request.endpoint == 'monthlyreport' or request.endpoint == 'statusreport' %} class="dropdown active" {% else %} class="dropdown" {% endif %}>
-              <a class="dropdown-toggle" data-toggle="dropdown">Reports<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="{{ url_for('statusreport') }}">Status</a></li>
-                <li><a href="{{ url_for('weeklyreport') }}">Weekly</a></li>
-                <li><a href="{{ url_for('monthlyreport') }}">Monthly</a></li>
-              </ul>
-            </li>
-          <li {% if request.endpoint == 'newsurvey' or request.endpoint == 'completesurvey' or request.endpoint == 'viewsurvey' %} class="dropdown active" {% else %} class="dropdown" {% endif %}>
-              <a class="dropdown-toggle" data-toggle="dropdown">Surveys<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="{{ url_for('newsurvey') }}">New Survey</a></li>
-                <li><a href="{{ url_for('completesurvey') }}">Complete Survey</a></li>
-                <li><a href="{{ url_for('viewsurvey') }}">View Survey</a></li>
-              </ul>
-            </li>
-          <li {% if request.endpoint == 'qrmake' or request.endpoint == 'qrreports' %} class="dropdown active" {% else %} class="dropdown" {% endif %}>
-              <a class="dropdown-toggle" data-toggle="dropdown">QR Codes<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="{{ url_for('qrmake') }}">Make a QR Code</a></li>
-                <li><a href="{{ url_for('qrreports') }}">Reports</a></li>
-              </ul>
-            </li>
-          <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown">Manuals<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="{{ url_for('mtgrusermanual') }}">MTGR User Manual</a></li>
-                <li><a href="{{ url_for('gta') }}">GTA</a></li>
-                <li><a href="{{ url_for('maintmanual') }}">Maint. Manual</a></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav pull-right">
-            <!-- <li><a href="// url_for/'register'/ //">Signup</a></li> -->
-            <li>{% if request.authorization.username == null %}<a>Logged in as <b>Guest</b></a>{% else %} <a>Logged in as <b>{{ request.authorization.username }}</b></a>{% endif %}</li>
-          </ul>
-          <ul class="nav navbar-nav pull-right">
-            <li><a>{{thetime}}, {{today}}</a></li>
-          </ul>
-          {% if request.authorization.username == 'shahar' %}
-          <ul class="nav navbar-nav pull-right">
-          <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="{{ url_for('ticketqueue') }}">Ticket Queue</a></li>
-              </ul>
-            </li>
-          </ul>
-          {% endif %}
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-
-    <!-- Begin page content -->
-    <main id="content" role="main" class="container">
-
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          {% for message in messages %}
-            <div class="alert alert-block alert-error fade in">
-              <a class="close" data-dismiss="alert">&times;</a>
-              {{ message }}
-            </div>
-          {% endfor %}
-        {% endif %}
-      {% endwith %}
-
-      {% block content %}{% endblock %}
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form> -->
       
-    </main>
 
-  </div>
+        {% if session.logged_in %}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a>Welcome <b>{{ g.user.username}}!</b></a></li>
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+        <form class="navbar-form navbar-right" role="search">
+          <div class="form-group">
+            <input type="text" autofocus class="form-control" placeholder="Scan an Item">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        {% else %}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/register">Register</a></li>
+        </ul>
+          <form class="navbar-form navbar-right" role="login" method="post" action="/login">
+            <div class="form-group">
+              <input type="text" class="form-control" id="username" name="username" placeholder="User Name">
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-default">Login</button>
+          </form>
+        
+        {% endif %}
 
-  <div id="footer">
-    <div class="container hidden-print">
-    <div class="col-md-6 hidden-print"><br>
-      <img src="/static/img/logosmall.png" width="100px"> &copy; All Rights Reserved.
-      Problems?<a href="mailto:adam@robo-teamna.com">Email me!</a>
-      {% block footer %}{% endblock %}
-    </div>
-    </div>
-  </div>
-  <!-- <script type="text/javascript" src="/static/js/libs/jquery.min.js"></script> -->
-  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-  <!-- <script>window.jQuery || document.write('<script src="/static/js/libs/jquery-1.10.2.min.js"><\/script>')</script> -->
-  <script defer src="/static/js/libs/bootstrap-3.0.0.min.js"></script>
-  <script defer src="/static/js/plugins.js"></script>
-  <script defer src="/static/js/script.js"></script>
-  
-  <!-- Google Analytics - Change UA-XXXXX-X to be your site's ID -->
-  <script>
-  window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
-  Modernizr.load({
-    load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
-  });
-  </script>
+      
+    </div><!-- /.navbar-collapse -->
+      </div>
+    </nav>
+    <br>
+    {% block content %}
+    {% endblock %}
+    <footer class="footer">
+      <div class="container">
+        <br>
+        <p class="text-muted">&copy; Persistent Systems 2015</p>
+      </div>
+    </footer>
+    </div> <!-- /container -->
+      <script src="/static/js/jquery-1.11.2.min.js"></script>
 
-</body>
+      <script src="/static/js/bootstrap.min.js"></script>
+
+      <script src="/static/js/main.js"></script>
+
+      <script src="/static/js/sortable.js"></script>
+
+      <script src="/static/js/toastr.min.js"></script>
+
+        
+
+{% with success = get_flashed_messages(category_filter=["success"]) %}
+  {% if success %}
+    {% for message in messages %}
+      <script type="text/javascript">
+        toastr.success('{{message}}');
+      </script>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% with errors = get_flashed_messages(category_filter=["error"]) %}
+  {% if errors %}
+    {% for message in messages %}
+      <script type="text/javascript">
+        toastr.error('{{message}}');
+      </script>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+    </body>
 </html>

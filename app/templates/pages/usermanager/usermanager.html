@@ -1,0 +1,181 @@
+{% extends 'layouts/main.html' %}
+{% block title %}User Management{% endblock %}
+{% block content %}
+
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-cogs"></i>User Tables
+		</div>
+	</div>
+	<div class="portlet-body flip-scroll">
+		<table class="table table-bordered table-striped table-condensed flip-content">
+		<thead class="flip-content">
+		<tr>
+			<th width="20%">
+				 User Name
+			</th>
+			<th>
+				 Email
+			</th>
+			<th>
+				 Level
+			</th>
+			{% if g.user.level =="4" %}
+			<th>
+				Edit
+			</th>
+			{% endif %}
+		</tr>
+		</thead>
+		<tbody>
+		{% for u in users %}
+		<tr>
+			<td>
+				 {{ u.username }}
+			</td>
+			<td>
+				 {{ u.email }}
+			</td>
+			<td>
+				 {{ u.level }}
+			</td>
+			{% if g.user.level =="4" %}
+			<td>
+				<a data-toggle="modal" href="#{{ u.username }}">Edit</a>
+			</td>
+			{% endif %}
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+	</div>
+</div>
+
+{% for u in users %}
+<div id="{{ u.username }}" class="modal fade" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+				<h4 class="modal-title">Edit User {{ u.username }}</h4>
+			</div>
+			<div class="modal-body">
+				<div class="scroller" style="height:300px" data-always-visible="1" data-rail-visible1="1">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-horizontal">
+								<!-- Text input-->
+								<div class="form-group">
+								  <label class="col-md-3 control-label" for="username">User Name</label>  
+								  <div class="col-md-9">
+								  <input id="username" name="username" type="text" value="{{u.username}}" class="form-control input-md" form="{{ u.email }}">
+								    
+								  </div>
+								</div>
+
+								<!-- Text input-->
+								<div class="form-group">
+								  <label class="col-md-3 control-label" for="email">Email</label>  
+								  <div class="col-md-9">
+								  <input id="email" name="email" type="text" value="{{u.email}}" class="form-control input-md" form="{{ u.email }}">
+								    
+								  </div>
+								</div>
+
+								<!-- Select Basic -->
+								<div class="form-group">
+								  <label class="col-md-3 control-label" for="level">User Level</label>
+								  <div class="col-md-9">
+								    <select id="level" name="level" form="{{ u.email }}"class="form-control">
+								      <option {% if u.level == "1" %} selected="selected" {% endif %}value="1">1 (User)</option>
+								      <option {% if u.level == "2" %} selected="selected" {% endif %}value="2">2 (FSR)</option>
+								      <option {% if u.level == "3" %} selected="selected" {% endif %}value="3">3 (Project Manager)</option>
+								      <option {% if u.level == "4" %} selected="selected" {% endif %}value="4">4 (Admin)</option>
+								    </select>
+								  </div>
+								</div>			
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" data-dismiss="modal" class="btn default">Close</button>
+				<button type="submit" form="{{ u.email }}" class="btn green">Submit</button>
+			</div>
+		</div>
+	</div>
+</div>
+<form id="{{ u.email }}" action="/usermanager/{{ u.username }}" method="post">
+</form>
+{% endfor %}
+
+{% if g.user.level == "4" %}
+<div class="portlet box blue">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-cogs"></i>User Requests
+		</div>
+	</div>
+	<div class="portlet-body flip-scroll">
+		<table class="table table-bordered table-striped table-condensed flip-content">
+		<thead class="flip-content">
+		<tr>
+			<th width="20%">
+				 User Name
+			</th>
+			<th>
+				Email
+			</th>
+			<th>
+				Level
+			</th>
+			<th>
+				Requested
+			</th>
+			<th>
+				Edit
+			</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for u in users %}
+			{% if u.wants != u.level %}
+				{% if u.wants >= "2" %}
+					<tr>
+						<td>
+							 {{ u.username }}
+						</td>
+						<td>
+							 {{ u.email }}
+						</td>
+						<td>
+							 {{ u.level }}
+						</td>
+						<td>
+							{{ u.wants }}
+						</td>
+						<td>
+							<a data-toggle="modal" href="#{{ u.username }}">Edit</a>
+						</td>
+					</tr>
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+		</tbody>
+		</table>
+	</div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block jquery %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

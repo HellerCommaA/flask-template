@@ -2,103 +2,23 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
-<!-- <div class="page-header">
-  <h1>Welcome to Bot Log!</h1>
-</div> -->
-<div class="jumbotron classwhite"><h3>Welcome!</h3><div class="row"><div class="col-md-6"></div>
-<div class="col-md-6 jumbotron ourlogo"></div>
-
-</br>
-</div>
-</div>
+{% if session.logged_in %}
 <div class="container">
-<div class="row">
-<div class="col-md-6">
-<p>End users: Please see the button below to open a support call and use the menu to view Manuals.</p>
-		<button type="button" class="btn btn-default btn-lg" onclick="location.href='/addcall';">
-		  <span class="icon icon-star"></span> Open Support Call
-		</button>
+	<h3>Welcome</h3>
 </div>
-<div class="col-md-6">
-<p>FSRs and other users: Please use the site as normal, and login with your provided username / password when asked.</p>
+{% else %}
 
-
-</div>
-<!-- 		<button type="button" class="btn btn-default btn-lg" onclick="location.href='/admin';">
-		  <span class="icon icon-bullhorn"></span> Admin Login
-		</button> -->
-</div>
-</div>
-
-<!-- <div class="row">
-		<button type="button" class="btn btn-default btn-lg" onclick="location.href='/viewsystems';">
-		  <span class="icon icon-star"></span> Systems
-		</button>
-		<button type="button" class="btn btn-default btn-lg" onclick="location.href='/viewcall';">
-		  <span class="icon icon-bullhorn"></span> Service Calls
-		</button>
-		<button type="button" class="btn btn-default btn-lg" onclick="location.href='/viewparts';">
-		  <span class="icon icon-plane"></span> Parts
-		</button>
-		<button type="button" class="btn btn-default btn-lg" onclick="location.href='/viewcall';">
-		  <span class="icon icon-print"></span> Service Call
-		</button>
-</div>
-</div> -->
-
-<!-- <div class="container">
-<h2>Open Calls:</h2>
-<div class="row">
-
-// for call in sc //
-<div class="col-md-3">
-	<div class="alert alert-danger" >
-		<a href="/viewcall#// call.sysnum //">System Number: // call.sysnum //</a>
+<div class="container">
+	<div class="col-md-12">
+		<br>
+		<div class="jumbotron">
+			Please login or <a href="register">register</a>!
+		</div>
 	</div>
 </div>
-// endfor //
- -->
-<!-- <br> -->
+{% endif %}
 
-<!-- <div class="jumbotron">
-<h2>Botlog Status</h2></br>
-<div class="row">
-<h4>Overall completion of BotLog:</h4>
-<div class="progress progress-striped">
-  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 35%">
-  </div>
-</div>
-</div>
+{% endblock %}
 
-<div class="row">
-<h4>Completion Systems Menu:</h4>
-<div class="progress progress-striped">
-  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
-  </div>
-</div>
-</div>
-
-<div class="row">
-<h4>Completion of Service Call Menu:</h4>
-<div class="progress progress-striped">
-  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
-  </div>
-</div>
-</div>
-
-<div class="row">
-<h4>Completion of Parts:</h4>
-<div class="progress progress-striped">
-  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 37%">
-  </div>
-</div>
-</div>
-
-<div class="row">
-<h4>Completion of Warranty Claim Form:</h4>
-<div class="progress progress-striped">
-  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-  </div>
-</div> -->
-
+{% block scripts %}
 {% endblock %}

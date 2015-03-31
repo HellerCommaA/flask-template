@@ -1,0 +1,51 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Items{% endblock %}
+{% block content %}
+
+
+<div class="container">
+	<div class="row">
+		<form class="form-inline">
+		  <div class="form-group">
+		    <label for="scan">Scan an Item</label>
+		    <input type="text" class="form-control" id="scan">
+		  </div>
+		  <button type="submit" class="btn btn-success">Submit</button>
+		</form>
+	</div>
+	<hr>
+	<br>
+	<h3>Recent Items</h3>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Serial</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Owner</th>
+				<th>Borrower</th>
+				<th>Location</th>
+				<th>Notes</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in items %}
+			<tr>
+				<td>{{item.serial}}</td>
+				<td>{{item.title}}</td>
+				<td>{{item.desc}}</td>
+				<td>{{item.owner}}</td>
+				<td>{{item.borrower}}</td>
+				<td>{{item.location}}</td>
+				<td>{{item.notes}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

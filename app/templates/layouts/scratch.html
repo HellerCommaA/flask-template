@@ -1,0 +1,39 @@
+<li {% if request.endpoint == 'addcall' or request.endpoint == 'viewcall' or request.endpoint == 'calldetail' %} class="selected active" {% endif %}>
+          <a href="javascript:;">
+          <i class="icon-rocket"></i>
+          <span class="title">Service Calls</span>
+          <span class="arrow "></span>
+          {% if request.endpoint == 'addcall' or request.endpoint == 'viewcall' or request.endpoint == 'calldetail' %}<span class="selected"></span>{% endif %}
+          </a>
+          <ul class="sub-menu">
+            <li {% if request.endpoint == 'addcall' %}class="active"{% endif %}>
+              <a href="{{ url_for('addcall') }}">
+              Add Service Call</a>
+            </li>
+            <li {% if request.endpoint == 'viewcall' %}class="active"{% endif %}>
+              <a href="{{ url_for('viewcall') }}">
+              View Service Calls</span><!-- <span class="badge badge-roundless badge-warning">new</span> -->
+              </a>
+            </li>
+          </ul>
+        </li>
+
+
+<!-- BEGIN FRONTEND THEME LINKS -->
+        <li {% if request.endpoint == 'completesurvey' %} class="active" {% endif %}>
+          <a href="javascript:;">
+          <i class="icon-star"></i>
+          <span class="title">
+          Survey</span>
+          <span class="arrow"></span>
+          {% if request.endpoint == 'completesurvey' %}<span class="selected"></span>{% endif %}
+          </a>
+          <ul class="sub-menu">
+            <li {% if request.endpoint == 'completesurvey' %}class="active"{% endif %}>
+              <a href="{{ url_for('completesurvey') }}">
+              <span class="title">
+              Complete Survey</span>
+              </a>
+            </li>
+          </ul>
+        </li>

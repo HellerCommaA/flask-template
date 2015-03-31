@@ -1,0 +1,39 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Item {{item.serial}}{% endblock %}
+{% block content %}
+
+<div class="container">
+	<h3>Item Specifics</h3>
+	<div class="table-responsive">
+		<table class="table table-hover sortable">
+			<thead>
+				<tr>
+					<th>Serial</th>
+					<th>Title</th>
+					<th>Description</th>
+					<th>Owner</th>
+					<th>Borrower</th>
+					<th>Location</th>
+					<th>Notes</th>
+				</tr>
+			</thead>
+			<tbody class="table-hover">
+				<tr>
+					<td>{{item.serial}}</td>
+					<td>{{item.title}}</td>
+					<td>{{item.desc}}</td>
+					<td>{{item.owner}}</td>
+					<td>{{item.borrower}}</td>
+					<td>{{item.location}}</td>
+					<td>{{item.notes}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
