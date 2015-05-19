@@ -5,3 +5,4 @@ db_repository/
 include/
 local/
 database.db
+pip-selfcheck.json
