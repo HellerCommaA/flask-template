@@ -4,3 +4,4 @@ lib/
 db_repository/
 include/
 local/
+database.db

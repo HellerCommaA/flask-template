@@ -1,24 +1,44 @@
-{% extends 'layouts/main.html' %}
+{% extends "nav/nav.html" %}
+
 {% block title %}Home{% endblock %}
+
 {% block content %}
-
-{% if session.logged_in %}
-<div class="container">
-	<h3>Welcome</h3>
-</div>
-{% else %}
-
-<div class="container">
-	<div class="col-md-12">
-		<br>
+    <div class="container">
 		<div class="jumbotron">
-			Please login or <a href="register">register</a>!
+			Welcome to the Quantim Server Uncertainty Generator!<br>
+			<h3>A butterfly flaps it's wings in China. Is your server affected?</h3>
+			<h4>I'm not sure either, but maybe these numbers will help.</h4>
 		</div>
-	</div>
-</div>
-{% endif %}
-
+		<div class="row">
+			<div class="col-md-12">
+			<!-- Chart.js Here -->
+			<canvas id="myChart"></canvas>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Number</th>
+							<th>Date Time</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for data in datas %}
+						<tr>
+							<td>{{ data.rand }}</td>
+							<td>{{ data.time }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+    </div>
 {% endblock %}
 
 {% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='js/init.js') }}"></script>
 {% endblock %}
